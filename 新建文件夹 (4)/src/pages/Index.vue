@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import clothes_44kb from '@/static/images/clothes_44kb.png'
-import clothes_79kb from '@/static/images/clothes_79kb.png'
+import clothes_44kb from '../static/images/clothes_44kb.png'
+import clothes_79kb from '../static/images/clothes_79kb.png'
 
 export default {
   data() {

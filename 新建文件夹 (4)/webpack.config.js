@@ -18,12 +18,6 @@ module.exports = {
     open: true,
     hot: true,
   },
-  resolve: {
-    extensions: ['.js', '.vue'],
-    alias: {
-      '@': __dirname + '/src'
-    }
-  },
   module: {
     rules: [
       {
@@ -36,7 +30,7 @@ module.exports = {
           }
         }
       },
-      {
+       {
         test: /\.css$/,
         use: [
           {
@@ -47,7 +41,7 @@ module.exports = {
             loader: 'css-loader'
           }
         ]
-      },
+      }, 
       {
         test: /\.scss$/,
         use: [
@@ -59,19 +53,19 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
-      },
+      }, 
       {
         test: /.(png|jpg|gif)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader:'url-loader',
             options: {
               limit: 50000,
               name: '[path][name]-[hash].[ext]'
             }
           }
         ]
-      },
+      }, 
       {
         test: /\.vue$/,
         use: [
