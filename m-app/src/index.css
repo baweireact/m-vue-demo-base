@@ -1,0 +1,11 @@
+body{margin: 0;}
+.m-wrap{display: flex;flex-direction:column;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-header{display: flex; height: 50px;border-bottom: 1px solid #dddddd;text-align: center;line-height: 50px;}
+.m-header-nav-item{flex: 1px;}
+.m-header-nav-item.active{color: #0f65e7;border-bottom: 2px solid #0f65e7;}
+
+
+
+.m-main{flex: 1;}
+
+

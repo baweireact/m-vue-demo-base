@@ -6,6 +6,7 @@
 
 <script>
 import Index from './pages/Index'
+import axios from 'axios'
 
 export default {
   name: 'app',

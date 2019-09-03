@@ -1,0 +1,10 @@
+body{margin: 0;}
+.m-wrap{display: flex;flex-direction:column;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-header{height: 50px;background: #e42929;color: #ffffff;text-align: center;line-height: 50px;}
+.m-footer{display: flex;height: 50px;border-top: 1px solid #dddddd;}
+.m-main{flex: 1;}
+.m-footer-nav-item{flex: 1; text-align: center;line-height: 50px;}
+.m-footer-nav-item.active{color: red;}
+
+
+

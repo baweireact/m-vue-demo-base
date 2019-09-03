@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser')
-const { list } = require('./data.js')
+const { bookNav, bookList } = require('./data.js')
 
 module.exports = {
   configureWebpack: {
@@ -8,33 +8,22 @@ module.exports = {
       before(app) {
         app.use(bodyParser.json())
   
-        app.get('/api/list', (req, res) => {
+        app.get('/api/book_nav', (req, res) => {
           res.send({
             code: 200,
-            data: list,
-            message: '列表'
+            data: bookNav,
+            message: '导航'
           })
         })
-  
-        app.post('/api/login', (req, res) => {
-          let { username, password } = req.body
-          if (username === 'admin' && password === '123456') {
-            res.send({
-              code: 200,
-              data: {
-                username
-              },
-              message: '登录成功'
-            })
-          } else {
-            res.send({
-              code: 400,
-              data: {
-                username
-              },
-              message: '登录失败'
-            })
-          }
+
+        app.get('/api/book_list', (req, res) => {
+          let { id } = req.query
+          let data = bookList.find(item => item.id === id)
+          res.send({
+            code: 200,
+            data: data,
+            message: '列表'
+          })
         })
       }
     }

@@ -1,5 +1,5 @@
 import Vue from "vue"
-import Index from "@/pages/Index.vue"
+import Index from "./pages/Index"
 import "./index.css"
 import "./index.scss"
 
