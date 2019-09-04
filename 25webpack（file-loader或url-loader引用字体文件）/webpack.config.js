@@ -12,29 +12,11 @@ module.exports = {
     filename: 'main-[hash].js'
   },
   devServer: {
-    contentBase: [__dirname + '/dist', __dirname + '/public'],
+    contentBase: __dirname + '/dist',
     port: 8080,
     inline: true,
     open: true,
     hot: true,
-    before(app) {
-      app.get('/api/getCaroselList', (req, res) => {
-        res.send({
-          code: 200,
-          data: [{
-            id: '0',
-            image: '/banner01.jpg'
-          },{
-            id: '1',
-            image: '/banner02.jpg'
-          }, {
-            id: '2',
-            image: '/banner03.jpg'
-          }],
-          message: '轮播图'
-        })
-      })
-    }
   },
   resolve: {
     extensions: ['.js', '.vue'],
