@@ -1,8 +1,7 @@
-.m-wrap{display: flex;flex-direction:column; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
-.m-header{height: 50px;line-height: 50px;}
-.m-logo{display: inline-block;margin: 4px 0 0 0; width: 162px;height: 42px;background-image: url(./static/images/logo.png);background-size: 100% 100%;}
-.m-footer{height: 50px;line-height: 50px; text-align: center;border-top: 1px solid #dddddd;}
-.m-main{flex:1}
+.m-wrap{display: flex;flex-direction: column; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-header{height: 50px;line-height: 50px;text-align: center;background: #ff0000;color: #ffffff;}
+.m-main{flex:1;}
+.m-footer{height: 50px;line-height: 50px;text-align: center;border-top: 1px solid #dddddd;}
 .m-category{display: flex;}
 .m-icon{flex: 1; font-size: 36px!important;color: #f66f0c;text-align: center;}
 .m-banner-img{width: 100%;}

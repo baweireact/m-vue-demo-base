@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',  //development production
   devtool: 'source-map',
   entry: './src/main.js',
   output: {
@@ -18,20 +18,20 @@ module.exports = {
     open: true,
     hot: true,
     before(app) {
-      app.get('/api/getCaroselList', (req, res) => {
+      app.get('/api/getCarouselList', (req, res) => {
         res.send({
           code: 200,
           data: [{
             id: '0',
             image: '/banner01.jpg'
-          },{
+          }, {
             id: '1',
-            image: '/banner02.jpg'
+            image: 'http://localhost:8080/banner02.jpg'
           }, {
             id: '2',
-            image: '/banner03.jpg'
+            image: 'https://b3-q.mafengwo.net/s14/M00/25/84/wKgE2l1s1MKAUWQJAArsD4Zz1WA499.jpg?imageMogr2%2Fthumbnail%2F%21750x422r%2Fgravity%2FCenter%2Fcrop%2F%21750x422%2Fquality%2F90'
           }],
-          message: '轮播图'
+          message: 'banner'
         })
       })
     }

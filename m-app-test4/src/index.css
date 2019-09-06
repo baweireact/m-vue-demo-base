@@ -1,0 +1,9 @@
+body{margin: 0;padding: 0;}
+.m-nav-wrap{margin: 10px;}
+.m-nav-item{display: inline-block;margin: 0 10px; color: #333333;cursor: pointer;}
+.m-nav-item.active{color: #f66f0c;border-bottom: 1px solid #f66f0c; }
+.m-list-item{display: flex;}
+.m-list-item-img{width: 122px;}
+.m-list-item-title{margin: 10px;font-size: 20px;font-weight: bold;}
+
+

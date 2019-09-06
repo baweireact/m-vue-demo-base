@@ -1,11 +1,10 @@
 <template>
   <div class="m-header">
-    <span class="m-logo"></span>
+    header
   </div>
 </template>
 
 <script>
-
 export default {
 
 }
