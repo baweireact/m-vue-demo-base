@@ -415,7 +415,7 @@ const bookMallData = [
 ]
 
 const mockDataList = Mock.mock({
-	'list|200': [{
+	'list|50': [{
 		'id|+1': 1,
 		'name': '@cname',
 		'title': '@ctitle',

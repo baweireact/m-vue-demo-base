@@ -1,27 +1,57 @@
 <template>
   <div>
-    <div class="m-wrap">
-      <List :list="list"></List>
-    </div>
+    <scroller :on-refresh="refresh" :on-infinite="infinite">
+      <div v-for="item in list" :key="item.id">
+        <div class="m-list-item">{{item.name}}</div>
+      </div>
+    </scroller>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import List from "./components/List";
 
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      page: 1
     };
   },
-  components: {
-    List
+  methods: {
+    refresh(done) {
+      axios({
+        url: "/api/mock_data?page=1&size=20"
+      }).then(res => {
+        setTimeout(() => {
+          if (res.data.code === 200) {
+            this.list = res.data.data;
+            done();
+          }
+        }, 2000);
+      });
+    },
+    infinite(done) {
+      console.log(2);
+      this.page = this.page + 1;
+      axios({
+        url: `/api/mock_data?page=${this.page}&size=20`
+      }).then(res => {
+        setTimeout(() => {
+          if (res.data.code === 200) {
+            this.list = this.list.concat(res.data.data);
+            done();
+            if (res.data.data.length < 20) {
+              done(true);
+            }
+          }
+        }, 2000);
+      });
+    }
   },
   mounted() {
     axios({
-      url: "/api/hover_list"
+      url: "/api/mock_data?page=1&size=20"
     }).then(res => {
       if (res.data.code === 200) {
         this.list = res.data.data;

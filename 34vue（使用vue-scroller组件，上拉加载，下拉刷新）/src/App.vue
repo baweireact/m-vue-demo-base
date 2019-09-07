@@ -23,10 +23,12 @@ export default {
       axios({
         url: "/api/mock_data?page=1&size=20"
       }).then(res => {
-        if (res.data.code === 200) {
-          this.list = res.data.data;
-          done();
-        }
+        setTimeout(() => {
+          if (res.data.code === 200) {
+            this.list = res.data.data;
+            done();
+          }
+        }, 2000);
       });
     },
     infinite(done) {
@@ -35,13 +37,15 @@ export default {
       axios({
         url: `/api/mock_data?page=${this.page}&size=20`
       }).then(res => {
-        if (res.data.code === 200) {
-          this.list = this.list.concat(res.data.data);
-          done();
-          if (res.data.data.length < 20) {
-            done(true);
+        setTimeout(() => {
+          if (res.data.code === 200) {
+            this.list = this.list.concat(res.data.data);
+            done();
+            if (res.data.data.length < 20) {
+              done(true);
+            }
           }
-        }
+        }, 2000);
       });
     }
   },

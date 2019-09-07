@@ -1,15 +1,5 @@
-.m-wrap{position: absolute;top: 0;left: 0;right: 0;bottom: 0;overflow-y: auto;}
-.m-list-wrap{position: absolute;top: 0;right: 0;}
-.m-list-item{display: flex;position: relative; margin: 10px;width: 300px;line-height: 50px; cursor: pointer;border-bottom: 1px solid #dddddd;}
-.m-list-item-name{display: inline-block; margin: 0 10px;}
-.m-list-item-code{display: inline-block;margin: 0 10px;color: green;}
-.m-list-item-code.red{display: inline-block;margin: 0 10px;color: red;}
-.m-tip-box{display: none;position: absolute; top: 0;left: -360px;width: 350px;height: 80px;border: 1px solid #dddddd;border-radius: 10px;background: rgba(0,0,0,0.1)}
-.m-tip-box.active{display: block;}
-.m-tip-box.detail{height: 150px;}
-.m-tip-box-name{padding: 10px;}
-.m-tip-detial{margin: 10px;}
-.m-tip-num{color: #f66f0c;font-weight: bold;margin: 0 5px;}
+.m-iscroll{position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-list-item{line-height: 100px;}
 
 
 
