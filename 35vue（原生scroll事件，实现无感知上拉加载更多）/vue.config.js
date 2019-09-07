@@ -1,4 +1,4 @@
-const { bookNavData, bookMallData, mockDataList, hoverList, hoverListDetail } = require('./data.js')
+const { bookNavData, bookMallData, mockDataList } = require('./data.js')
 
 module.exports = {
   lintOnSave:false,
@@ -54,36 +54,6 @@ module.exports = {
           data: data,
           message: '列表'
         })
-      })
-
-      app.get('/api/hover_list', (req, res) => {
-        res.send({
-          code: 200,
-          data: hoverList,
-          message: '列表'
-        })
-      })
-
-      app.get('/api/hover_list_detail', (req, res) => {
-        let {id} = req.query
-
-        console.log(id)
-        console.log(hoverListDetail)
-        let detail
-        for (let i = 0; i < hoverListDetail.length; i++) {
-          if (hoverListDetail[i].id == id) {
-            detail = hoverListDetail[i]
-            break
-          }
-        }
-        console.log(detail)
-
-        res.send({
-          code: 200,
-          data: detail,
-          message: '详情'
-        })
-
       })
     }
   }

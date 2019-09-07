@@ -1,7 +1,6 @@
-const { bookNavData, bookMallData, mockDataList, hoverList, hoverListDetail } = require('./data.js')
+const { bookNavData, bookMallData } = require('./data.js')
 
 module.exports = {
-  lintOnSave:false,
   devServer: {
     contentBase: [__dirname + '/img'],
     open: true,
@@ -40,50 +39,6 @@ module.exports = {
           data: data,
           message: '列表'
         })
-      })
-
-      app.get('/api/mock_data', (req, res) => {
-        let { page, size } = req.query
-        let start = (page - 1) * size
-        let end = start + Number(size)
-        console.log(start, end)
-        let data = mockDataList.slice(start, end)
-
-        res.send({
-          code: 200,
-          data: data,
-          message: '列表'
-        })
-      })
-
-      app.get('/api/hover_list', (req, res) => {
-        res.send({
-          code: 200,
-          data: hoverList,
-          message: '列表'
-        })
-      })
-
-      app.get('/api/hover_list_detail', (req, res) => {
-        let {id} = req.query
-
-        console.log(id)
-        console.log(hoverListDetail)
-        let detail
-        for (let i = 0; i < hoverListDetail.length; i++) {
-          if (hoverListDetail[i].id == id) {
-            detail = hoverListDetail[i]
-            break
-          }
-        }
-        console.log(detail)
-
-        res.send({
-          code: 200,
-          data: detail,
-          message: '详情'
-        })
-
       })
     }
   }
