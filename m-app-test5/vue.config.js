@@ -1,7 +1,6 @@
-const { bookNavData, bookMallData, mockDataList } = require('./data.js')
+const { bookNavData, bookMallData } = require('./data.js')
 
 module.exports = {
-  lintOnSave:false,
   devServer: {
     contentBase: [__dirname + '/img'],
     open: true,
@@ -35,20 +34,6 @@ module.exports = {
         let { id } = req.query
         console.log(req.query)
         let data = bookMallData.find(item => item.id == id)
-        res.send({
-          code: 200,
-          data: data,
-          message: '列表'
-        })
-      })
-
-      app.get('/api/mock_data', (req, res) => {
-        let { page, size } = req.query
-        let start = (page - 1) * size
-        let end = start + Number(size)
-        console.log(start, end)
-        let data = mockDataList.slice(start, end)
-
         res.send({
           code: 200,
           data: data,

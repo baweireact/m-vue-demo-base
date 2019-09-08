@@ -1,5 +1,3 @@
-const Mock = require('mockjs')
-
 const bookNavData = [
 	{
 		id: 0,
@@ -414,18 +412,7 @@ const bookMallData = [
 	}
 ]
 
-const mockDataList = Mock.mock({
-	'list|50': [{
-		'id|+1': 1,
-		'name': '@cname',
-		'title': '@ctitle',
-		'image': '@image(300x300)',
-		'address': '@county(true)'
-	}]
-}).list
-
 module.exports = {
 	bookNavData,
-	bookMallData,
-	mockDataList,
+	bookMallData
 }
