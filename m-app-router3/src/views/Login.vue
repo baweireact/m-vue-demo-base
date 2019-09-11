@@ -1,5 +1,8 @@
 <template>
   <div class="m-login">
+    <div class="m-login-title">
+      登录
+    </div>
     <div class="m-input-row">
       <input v-model="username" placeholder="请输入用户名" ref="username" class="m-input"/>
     </div>
