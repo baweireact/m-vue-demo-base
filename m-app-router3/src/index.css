@@ -1,3 +1,9 @@
+.m-login{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);padding: 10px; width: 400px;height: 200px; border-radius: 10px;background: #dddddd; border: 1px solid #dddddd;}
+.m-input-row{margin: 10px;}
+.m-input{width: 100%;line-height: 30px;}
+.m-btn{width: 100%;line-height: 30px;}
+
+
 .m-nav-item{display: inline-block;margin: 0 10px;font-size: 20px; color: #333333; text-decoration: none}
 .m-nav-item.router-link-active{color: #f66f0c;border-bottom: 2px solid #f66f0c;}
 .m-book-nav{padding: 0;}
@@ -14,6 +20,8 @@
 .m-add-btn-disable{display: inline-block;margin: 0 10px; width: 150px;height: 40px;line-height: 40px;background: #ffffff;border:1px solid #dddddd; color: #dddddd; text-align: center;}
 .m-detail{margin: 10px;}
 .m-detail-img{width: 122px;}
+.m-my-book{margin: 10px;}
+.m-toolbar{margin: 10px 0;}
 
 
 

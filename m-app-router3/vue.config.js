@@ -8,6 +8,39 @@ module.exports = {
     before(app) {
       app.use(bodyParser.json())
       let myBook = []
+      app.post('/api/login', (req, res) => {
+        let { username, password } = req.body
+        //let tempUser = user.find(item => item.username === username && item.password === password)
+        if (username === 'admin' && password === '123456') {
+          // if (tempUser.password === password) {
+          //   res.send({
+          //     code: 200,
+          //     data: {
+          //       username
+          //     },
+          //     message: '登录成功'
+          //   })
+          // } else {
+          //   res.send({
+          //     code: 400,
+          //     message: '密码错误'
+          //   })
+          // }
+          res.send({
+            code: 200,
+            data: {
+              username
+            },
+            message: '登录成功'
+          })
+        } else {
+          res.send({
+            code: 400,
+            message: '登录失败'
+          })
+        }
+      })
+
       app.get('/api/book_nav', (req, res) => {
         res.send({
           code: 200,
@@ -60,6 +93,23 @@ module.exports = {
         res.send({
           code: 200,
           message: '添加成功'
+        })
+      })
+
+      app.get('/api/my_book', (req, res) => {
+        res.send({
+          code: 200,
+          data: myBook,
+          message: '我的书架'
+        })
+      })
+
+      app.post('/api/delete_book', (req, res) => {
+        let { ids } = req.body
+        myBook = myBook.filter(item => !ids.find(id => id === item.id))
+        res.send({
+          code: 200,
+          message: '删除成功'
         })
       })
     }

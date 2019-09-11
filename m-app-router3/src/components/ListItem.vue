@@ -17,21 +17,27 @@ export default {
   props: ['item', 'onUpdate'],
   methods: {
     handleDetail(id) {
-      this.$router.push(`/home/detail/${id}`)
+      this.$router.push(`/index/home/detail/${id}`)
     },
     handleAdd(item) {
-      axios({
-        url: '/api/add_book',
-        data: {
-          item
-        },
-        method: 'post'
-      }).then(res => {
-        if (res.data.code === 200) {
-          console.log('添加成功')
-          this.$emit('onUpdate')
-        }
-      })
+      let username = localStorage.getItem('username')
+      if (username) {
+        axios({
+          url: '/api/add_book',
+          data: {
+            item
+          },
+          method: 'post'
+        }).then(res => {
+          if (res.data.code === 200) {
+            console.log('添加成功')
+            this.$emit('onUpdate')
+          }
+        })
+      } else {
+        this.$router.push('/login')
+      }
+
     }
   }
 }
