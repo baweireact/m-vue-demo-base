@@ -1,0 +1,7 @@
+.m-nav-item{display: inline-block;margin: 0 10px;color: #333333;text-decoration: none;}
+.m-nav-item.router-link-active{color: #f66f0c;border-bottom: 2px solid #f66f0c;}
+.m-book-nav{padding: 0;}
+.m-book-nav-item{display: inline-block;margin: 0 10px;list-style-type: none;color: #333333;cursor: pointer;}
+.m-book-nav-item.active{color: #f66f0c;border-bottom: 2px solid #f66f0c;}
+
+
