@@ -4,13 +4,13 @@
       登录
     </div>
     <div class="m-input-row">
-      <input v-model="username" placeholder="请输入用户名" ref="username" class="m-input"/>
+      <el-input v-model="username" placeholder="请输入用户名" ref="username" class="m-input"></el-input>
     </div>
     <div class="m-input-row">
-      <input v-model="password" @keyup.enter="login" type="password" class="m-input" placeholder="请输入密码"/>
+      <el-input v-model="password" @keyup.enter.native="login" type="password" class="m-input" placeholder="请输入密码"></el-input>
     </div>
     <div class="m-input-row">
-      <button class="m-btn" @click="login">登录</button>
+      <el-button class="m-login-btn" @click="login">登录</el-button>
     </div>
   </div>
 </template>

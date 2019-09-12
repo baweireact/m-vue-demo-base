@@ -8,7 +8,7 @@ import Detail from './views/Detail'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -29,14 +29,15 @@ export default new Router({
       }, {
         path: '/index/mybook',
         component: MyBook,
-        beforeEnter(to, from, next) {
-          let username = localStorage.getItem('username')
-          if (username) {
-            next()
-          } else {
-            next('/login')
-          }
-        }
+        // beforeEnter(to, from, next) {
+        //   let username = localStorage.getItem('username')
+        //   if (username) {
+        //     next()
+        //   } else {
+        //     next('/login')
+        //   }
+        // },
+        meta: {requiresAuth: true}
       }, {
         path: '/index/home/detail/:id',
         component: Detail
@@ -44,3 +45,20 @@ export default new Router({
     },
   ]
 })
+
+//路由守卫
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(item => item.meta.requiresAuth)) {
+    let username = localStorage.getItem('username')
+    if (username) {
+      next()
+    } else {
+      next({
+        path: '/login'
+      })
+    }
+  }
+  next()
+})
+
+export default router
