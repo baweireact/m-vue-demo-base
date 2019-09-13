@@ -14,7 +14,7 @@
 import axios from 'axios'
 
 export default {
-  props: ['item'],
+  props: ['item', 'onListUpdate'],
   methods: {
     handleDetail(id) {
       this.$router.push(`/home/detail/${id}`)
@@ -28,7 +28,7 @@ export default {
         method: 'post'
       }).then(res => {
         if (res.data.code === 200) {
-          
+          this.$emit('onListUpdate')
         }
       })
     }

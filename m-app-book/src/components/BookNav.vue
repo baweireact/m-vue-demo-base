@@ -12,6 +12,18 @@
 <script>
 export default {
   props: ['bookNav', 'currentIndex', 'onNav'],
+  // props: {
+  //   bookNav: {
+  //     type: Array
+  //   },
+  //   currentIndex: {
+  //     type: Number,
+  //     default: 2,
+  //   },
+  //   onNav: {
+  //     type: Function
+  //   }
+  // },
   methods: {
     handleNav(index, id) {
       this.$emit('onNav', index, id)

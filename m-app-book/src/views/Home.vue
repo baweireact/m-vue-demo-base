@@ -1,7 +1,7 @@
 <template>
   <div class="m-home">
     <BookNav :bookNav="bookNav" :currentIndex="currentIndex" @onNav="handleNav"></BookNav>
-    <List :bookList="bookList" @listUpdate="handleListUpdate"></List>
+    <List :bookList="bookList" @onListUpdate="handleListUpdate"></List>
   </div>
 </template>
 
@@ -23,18 +23,20 @@ export default {
     List
   },
   methods: {
+    //点击导航会触发这个函数，点击添加高亮，axiso请求数据发出的是id，通过id找到数据
     handleNav(index, id) {
-      this.currentIndex = index;
+      this.currentIndex = index; //高亮
       axios({
         url: `/api/book_list?id=${id}`
       }).then(res => {
         if (res.data.code === 200) {
-          this.bookList = res.data.data;
+          this.bookList = res.data.data;  //列表数据更新
         }
       });
-      localStorage.setItem("currentIndex", index);
-      localStorage.setItem("id", id);
-    },
+      localStorage.setItem("currentIndex", index);  //本地存储，高亮
+      localStorage.setItem("id", id);  //本地存储，id
+    }, 
+    //加入我的书架后，会触发这个函数，更新数据
     handleListUpdate() {
       let id = localStorage.getItem("id") || "0";
       axios({

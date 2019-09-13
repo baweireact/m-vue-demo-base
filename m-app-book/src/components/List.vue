@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ListItem v-for="item in bookList" :key="item.id" :item="item"></ListItem>
+    <ListItem v-for="item in bookList" :key="item.id" :item="item" @onListUpdate="handleListUpdate"></ListItem>
   </div>
 </template>
 
@@ -8,9 +8,14 @@
 import ListItem from './ListItem'
 
 export default {
-  props: ['bookList'],
+  props: ['bookList', 'onListUpdate'],
   components: {
     ListItem
+  },
+  methods: {
+    handleListUpdate() {
+      this.$emit('onListUpdate')
+    }
   }
 }
 </script>

@@ -10,7 +10,15 @@
 
 <script>
 export default {
-  props: ['bookNav', 'currentIndex', 'onNav'],
+  //props: ['bookNav', 'currentIndex', 'onNav'],
+  props: {
+    bookNav: Array,
+    currentIndex: {
+      type: Number,
+      default: 1
+    },
+    onNav: Function,
+  },
   methods: {
     handleNav(index, id) {
       this.$emit('onNav', index, id)

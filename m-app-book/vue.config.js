@@ -7,6 +7,8 @@ module.exports = {
     before(app) {
       app.use(bodyParser.json())
       let myBook = []
+
+      //导航的数据
       app.get('/api/book_nav', (req, res) => {
         res.send({
           code: 200,
@@ -15,14 +17,15 @@ module.exports = {
         })
       })
 
+      //列表数据
       app.get('/api/book_list', (req, res) => {
         let { id } = req.query
         let data = bookMallData.find(item => item.id == id).list
         data = data.map(item => {
           if (myBook.find(book => book.id === item.id)) {
-            item.is_in_my_book = true
+            item.is_in_my_book = true   //在我的书架
           } else {
-            item.is_in_my_book = false
+            item.is_in_my_book = false  //不在我的书架
           }
           return item
         })
@@ -33,6 +36,7 @@ module.exports = {
         })
       })
 
+      //详情页的数据
       app.get('/api/detail', (req, res) => {
         let { id } = req.query
         let data
@@ -50,6 +54,7 @@ module.exports = {
         })
       })
 
+      //添加到我的书架
       app.post('/api/add_book', (req, res) => {
         let { item } = req.body
         myBook.push(item)
@@ -59,6 +64,7 @@ module.exports = {
         })
       })
 
+      //获取我的书架
       app.get('/api/get_my_book', (req, res) => {
         res.send({
           code:200,
