@@ -22,18 +22,7 @@ export default {
     handleAdd(item) {
       let username = localStorage.getItem('username')
       if (username) {
-        axios({
-          url: '/api/add_book',
-          data: {
-            item
-          },
-          method: 'post'
-        }).then(res => {
-          if (res.data.code === 200) {
-            console.log('添加成功')
-            //this.$emit('onUpdate')
-          }
-        })
+        this.$store.dispatch({ type: 'task/addBook', item })
       } else {
         this.$router.push('/login')
       }
