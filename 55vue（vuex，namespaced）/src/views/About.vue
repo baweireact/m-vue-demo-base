@@ -18,14 +18,14 @@ export default {
   methods: {
     handleUpdate() {
       this.$store.commit({
-        type: "onSetStateForGame",
+        type: "game/onSetState",
         key: "gameName",
         value: "英雄联盟"
       });
     },
     handleUpdateToOld() {
       this.$store.commit({
-        type: "onSetStateForGame",
+        type: "game/onSetState",
         key: "gameName",
         value: "绝地求生"
       });

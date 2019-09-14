@@ -1,13 +1,16 @@
-const game = {
+const task = {
   namespaced: true,
   state: {
-    gameName: '绝地求生'
+    count: 0
   },
   mutations: {
     onSetState(state, payload) {
       state[payload.key] = payload.value
     }
+  },
+  actions: {
+
   }
 }
 
-export default game
+export default task

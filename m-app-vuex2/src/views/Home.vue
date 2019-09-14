@@ -1,29 +1,50 @@
 <template>
-  <div class="home">
-    {{count}}
-    <div>
-      <button @click="handleSub">减</button>
-      <button @click="handleAdd">加</button>
-    </div>
+  <div class="m-home">
+    <BookNav></BookNav>
+    <List></List>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import BookNav from "../components/BookNav";
+import List from "../components/List";
+
 export default {
-  computed: {
-    count() {
-      return this.$store.state.task.count;
-    }
+  components: {
+    BookNav,
+    List
   },
   methods: {
-    handleAdd() {
-      let value = this.count + 1;
-      this.$store.commit({ type: "onSetState", key: "count", value });
+    handleNav(index, id) {
+      this.currentIndex = index;
+      localStorage.setItem("currentIndex", index);
+      localStorage.setItem("id", id);
+      axios({
+        url: `/api/book_list?id=${id}`
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.bookList = res.data.data;
+        }
+      });
     },
-    handleSub() {
-      let value = this.count - 1;
-      this.$store.commit({ type: "onSetState", key: "count", value });
+    handleUpdate() {
+      let id = localStorage.getItem("id") ? localStorage.getItem("id") : "0";
+      axios({
+        url: `/api/book_list?id=${id}`
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.bookList = res.data.data;
+        }
+      });
     }
+  },
+  mounted() {
+    // let id = localStorage.getItem("id") ? localStorage.getItem("id") : "0";
+    // this.currentIndex = localStorage.getItem("currentIndex")
+    //   ? Number(localStorage.getItem("currentIndex"))
+    //   : 0;
   }
 };
 </script>
