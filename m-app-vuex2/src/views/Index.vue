@@ -12,9 +12,7 @@
         <el-button v-else @click="handleLogin">登录</el-button>
       </div>
     </div>
-    <keep-alive>
-      <router-view></router-view>
-    </keep-alive>
+    <router-view></router-view>
   </div>
 </template>
 

@@ -2,7 +2,6 @@
   <div class="m-home">
     <BookNav></BookNav>
     <List></List>
-    <router-view></router-view>
   </div>
 </template>
 

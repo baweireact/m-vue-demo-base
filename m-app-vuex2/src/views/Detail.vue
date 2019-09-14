@@ -11,35 +11,20 @@
 import axios from "axios";
 
 export default {
-  data() {
-    return {
-      detail: {}
-    };
+  computed: {
+    detail() {
+      return this.$store.state.task.detail
+    }
   },
   methods: {
     handleAdd() {
-      axios({
-        url: "/api/add_book",
-        data: {
-          item: this.detail
-        },
-        method: "post"
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.detail.is_in_my_book = true;
-        }
-      });
+      let id = this.$route.params.id;
+      this.$store.dispatch({ type: 'task/addBookInDetailPage', detail: this.detail, id })
     }
   },
   mounted() {
     let id = this.$route.params.id;
-    axios({
-      url: `/api/detail?id=${id}`
-    }).then(res => {
-      if (res.data.code === 200) {
-        this.detail = res.data.data;
-      }
-    });
+    this.$store.dispatch({ type: 'task/getDetail', id })
   }
 };
 </script>

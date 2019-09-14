@@ -1,14 +1,22 @@
 import axios from 'axios'
 
+let currentIndex = 0, navId = 0
+let store = JSON.parse(localStorage.getItem('store'))
+if (store) {
+  currentIndex = store.task.currentIndex
+  navId = store.task.navId
+}
+
 const task = {
   namespaced: true,
   state: {
     username: '',
     password: '',
     bookNav: [],
-    currentIndex: 0,
-    navId: 0,
+    currentIndex: currentIndex,
+    navId: navId,
     bookList: [],
+    detail: {},
   },
   mutations: {
     onSetState(state, payload) {
@@ -16,6 +24,23 @@ const task = {
     }
   },
   actions: {
+    login({ }, payload) {
+      axios({
+        url: '/api/login',
+        data: {
+          username: payload.username,
+          password: payload.password
+        },
+        method: 'post'
+      }).then(res => {
+        if (res.data.code === 200) {
+          payload.callback && payload.callback()
+          localStorage.setItem('username', res.data.data.username)
+        } else {
+          alert(res.data.message)
+        }
+      })
+    },
     getBookNav({ commit }) {
       axios({
         url: "/api/book_nav"
@@ -48,6 +73,28 @@ const task = {
           dispatch({ type: 'getBookList', index: state.currentIndex, id: state.navId })
         }
       })
+    },
+    getDetail({ commit }, payload) {
+      axios({
+        url: `/api/detail?id=${payload.id}`
+      }).then(res => {
+        if (res.data.code === 200) {
+          commit({ type: 'onSetState', key: 'detail', value: res.data.data })
+        }
+      });
+    },
+    addBookInDetailPage({ commit, dispatch }, payload) {
+      axios({
+        url: "/api/add_book",
+        data: {
+          item: payload.detail
+        },
+        method: "post"
+      }).then(res => {
+        if (res.data.code === 200) {
+          dispatch({ type: 'getDetail', id: payload.id })
+        }
+      });
     }
   }
 }

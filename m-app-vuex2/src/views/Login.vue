@@ -34,21 +34,10 @@ export default {
         alert('用户名不能为空！')
         return
       }
-      axios({
-        url: '/api/login',
-        data: {
-          username: this.username,
-          password: this.password
-        },
-        method: 'post'
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.$router.push('/index/home')
-          localStorage.setItem('username', res.data.data.username)
-        } else {
-          alert(res.data.message)
-        }
-      })
+      this.$store.dispatch({ type: 'task/login', username: this.username, password: this.password, callback: this.loginCallback})
+    },
+    loginCallback() {
+      this.$router.push('/index/home')
     },
     //受控组件
     handleInput(field, value) {

@@ -17,7 +17,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch({ type: 'task/getBookList', index: 0, id: 0 })
+    let currentIndex = this.$store.state.task.currentIndex
+    let id = this.$store.state.task.navId
+    this.$store.dispatch({ type: 'task/getBookList', index: currentIndex, id })
   }
 }
 </script>

@@ -2,7 +2,6 @@
   <div class="m-home">
     <BookNav :bookNav="bookNav" :currentIndex="currentIndex" @onNav="handleNav"></BookNav>
     <List :bookList="bookList" @onUpdate="handleUpdate"></List>
-    <router-view></router-view>
   </div>
 </template>
 

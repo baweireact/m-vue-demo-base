@@ -5,9 +5,16 @@ import game from './game/game'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
+  plugins: [],
   modules: {
     task,
     game,
   }
 })
+
+store.subscribe((mutation, state) => {
+  localStorage.setItem('store', JSON.stringify(state))
+})
+
+export default store
