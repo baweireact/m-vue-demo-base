@@ -2,6 +2,7 @@ const { bookNavData, bookMallData } = require('./data.js')
 const bodyParser = require('body-parser')
 
 module.exports = {
+  lintOnSave:false,
   devServer: {
     contentBase: [__dirname + '/img'],
     open: true,

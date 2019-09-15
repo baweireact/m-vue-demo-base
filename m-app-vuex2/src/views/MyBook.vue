@@ -7,7 +7,6 @@
       :data="myBook"
       stripe
       border
-      :row-class-name="rowClassName"
       height="300"
       @selection-change="handleSelectChange"
     >
@@ -27,58 +26,28 @@
 import axios from "axios";
 
 export default {
-  data() {
-    return {
-      myBook: [],
-      multipleSelection: []
-    };
+  computed: {
+    myBook() {
+      return this.$store.state.task.myBook
+    },
+    multipleSelection() {
+      return this.$store.state.task.multipleSelection
+    }
   },
   methods: {
-    rowClassName({ row, rowIndex }) {
-      return "m-row";
-    },
-    handleSelectChange(val) {
-      this.multipleSelection = val;
+    handleSelectChange(value) {
+      this.$store.commit({ type: 'task/onSetState', key: 'multipleSelection', value })
     },
     handleDelete(row) {
-      axios({
-        url: "/api/delete_book",
-        data: {
-          ids: [row.id]
-        },
-        method: "post"
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.getMyBook()
-        }
-      });
+      this.$store.dispatch({ type: 'task/deleteMyBook', ids: [row.id] })
     },
     handleDeleteSelected() {
       let ids = this.multipleSelection.map(item => item.id)
-      axios({
-        url: "/api/delete_book",
-        data: {
-          ids
-        },
-        method: "post"
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.getMyBook()
-        }
-      });
-    },
-    getMyBook() {
-      axios({
-        url: "/api/my_book"
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.myBook = res.data.data;
-        }
-      });
+      this.$store.dispatch({ type: 'task/deleteMyBook', ids })
     }
   },
   mounted() {
-    this.getMyBook()
+    this.$store.dispatch('task/getMyBook')
   }
 };
 </script>

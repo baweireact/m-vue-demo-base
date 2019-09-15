@@ -17,6 +17,8 @@ const task = {
     navId: navId,
     bookList: [],
     detail: {},
+    myBook: [],
+    multipleSelection: [],
   },
   mutations: {
     onSetState(state, payload) {
@@ -24,7 +26,8 @@ const task = {
     }
   },
   actions: {
-    login({ }, payload) {
+    //登录
+    login({}, payload) {
       axios({
         url: '/api/login',
         data: {
@@ -41,6 +44,7 @@ const task = {
         }
       })
     },
+    //导航
     getBookNav({ commit }) {
       axios({
         url: "/api/book_nav"
@@ -50,6 +54,7 @@ const task = {
         }
       });
     },
+    //列表
     getBookList({ commit }, payload) {
       axios({
         url: `/api/book_list?id=${payload.id}`
@@ -61,6 +66,7 @@ const task = {
         }
       });
     },
+    //列表页里的加入书架
     addBook({ commit, dispatch, state }, payload) {
       axios({
         url: '/api/add_book',
@@ -74,6 +80,7 @@ const task = {
         }
       })
     },
+    //详情页
     getDetail({ commit }, payload) {
       axios({
         url: `/api/detail?id=${payload.id}`
@@ -83,6 +90,7 @@ const task = {
         }
       });
     },
+    //详情页里的加入书架
     addBookInDetailPage({ commit, dispatch }, payload) {
       axios({
         url: "/api/add_book",
@@ -93,6 +101,31 @@ const task = {
       }).then(res => {
         if (res.data.code === 200) {
           dispatch({ type: 'getDetail', id: payload.id })
+        }
+      });
+    },
+    //获取我的书架
+    getMyBook({ commit }) {
+      axios({
+        url: "/api/my_book"
+      }).then(res => {
+        if (res.data.code === 200) {
+          this.myBook = res.data.data;
+          commit({ type: 'onSetState', key: 'myBook', value: res.data.data })
+        }
+      });
+    },
+    //删除我的书架里的图书
+    deleteMyBook({ commit, dispatch }, payload) {
+      axios({
+        url: "/api/delete_book",
+        data: {
+          ids: payload.ids
+        },
+        method: "post"
+      }).then(res => {
+        if (res.data.code === 200) {
+          dispatch({ type: 'getMyBook'})
         }
       });
     }
