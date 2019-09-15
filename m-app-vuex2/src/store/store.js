@@ -6,7 +6,6 @@ import game from './game/game'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  plugins: [],
   modules: {
     task,
     game,

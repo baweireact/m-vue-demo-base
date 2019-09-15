@@ -23,7 +23,7 @@ export default {
     List
   },
   methods: {
-    //点击导航会触发这个函数，点击添加高亮，axiso请求数据发出的是id，通过id找到数据
+    //点击导航会触发这个函数，点击添加高亮，axios请求数据发出的是id，通过id找到数据
     handleNav(index, id) {
       this.currentIndex = index; //高亮
       axios({
