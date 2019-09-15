@@ -9,7 +9,8 @@ export default new Vuex.Store({
     title: '西少爷点餐系统',
     foodList: [],
     currentIndex: 0,
-    currentFoodList: []
+    currentFoodList: [],
+    myCart: [],
   },
   mutations: {
     onSetState(state, payload) {
@@ -24,6 +25,29 @@ export default new Vuex.Store({
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'foodList', value: res.data.data })
           commit({ type: 'onSetState', key: 'currentFoodList', value: res.data.data[0].spuList })
+        }
+      })
+    },
+    addToMyCart({ commit, state }, payload) {
+      axios({
+        url: '/api/add_to_my_cart',
+        data: {
+          currentItem: payload.currentItem,
+          categoryName: state.foodList[state.currentIndex].categoryName
+        },
+        method: 'post'
+      }).then(res => {
+        if (res.data.code === 200) {
+          payload.callback && payload.callback()
+        }
+      })
+    },
+    getMyCart({ commit }) {
+      axios({
+        url: '/api/get_my_book'
+      }).then(res => {
+        if (res.data.code === 200) {
+          commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
         }
       })
     }

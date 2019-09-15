@@ -5,8 +5,18 @@
 </template>
 
 <script>
-export default {
+import axios from 'axios'
 
+export default {
+  mounted() {
+    axios({
+      url: '/api/get_my_cart'
+    }).then(res => {
+      if (res.data.code === 200) {
+        
+      }
+    })
+  }
 }
 </script>
 

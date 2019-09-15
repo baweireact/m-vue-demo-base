@@ -1,6 +1,6 @@
 <template>
   <div class="m-list-item">
-    <img :src="item.avatar" class="m-list-item-img"> 
+    <img :src="item.avatar" class="m-list-item-img" />
     <div class="m-list-item-info">
       <div class="m-list-item-title">{{item.title}}</div>
       <span class="m-detail-btn" @click="handleDetail(item.id)">书籍详情</span>
@@ -11,31 +11,34 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
-  props: ['item', 'onListUpdate'],
+  props: ["item", "onListUpdate"],
   methods: {
     handleDetail(id) {
-      this.$router.push(`/home/detail/${id}`)
+      this.$router.push(`/home/detail/${id}`);
     },
     handleAdd(item) {
-      axios({
-        url: '/api/add_book',
-        data: {
-          item
-        },
-        method: 'post'
-      }).then(res => {
-        if (res.data.code === 200) {
-          this.$emit('onListUpdate')
-        }
-      })
+      if (localStorage.getItem("username")) {
+        axios({
+          url: "/api/add_book",
+          data: {
+            item
+          },
+          method: "post"
+        }).then(res => {
+          if (res.data.code === 200) {
+            this.$emit("onListUpdate");
+          }
+        });
+      } else {
+        this.$router.push('/login')
+      }
     }
   }
-}
+};
 </script>
 
 <style>
-
 </style>
