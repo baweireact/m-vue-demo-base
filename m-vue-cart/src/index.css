@@ -1,0 +1,22 @@
+.m-wrap{display: flex;flex-direction: column;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+.m-header{height: 50px;line-height: 50px;background: #a12222;color: #ffffff;text-align: center;}
+.m-main{flex: 1;height: 100%;}
+.m-footer{display: flex; height: 50px;border-top: 1px solid #dddddd;}
+.m-footer-nav-item{flex: 1;text-align: center;line-height: 50px;text-decoration: none;color: #333333;}
+.m-footer-nav-item.router-link-active{color: #F66F0C;}
+.m-home{display: flex;height: 100%;}
+.m-sidebar{width: 150px;height: 100%;border-right: 1px solid #dddddd;}
+.m-food-list{flex: 1;height: 100%;overflow-y: auto;}
+.m-sidebar-nav-item{text-align: center;line-height: 30px;color:#333333; border-bottom: 1px solid #dddddd;cursor: pointer;}
+.m-sidebar-nav-item.active{color: #ffffff;background: #ee5353;}
+.m-food-list-item{display: flex;padding: 5px; border-bottom: 1px solid #dddddd;}
+.m-food-list-img{width: 120px;border-radius: 5px;}
+.m-food-list-info{flex: 1;padding: 5px;}
+.m-name{font-size: 20px;}
+.m-price{color: #ff0000;font-size: 18px;font-weight: bold;line-height: 40px;}
+
+
+
+
+
+
