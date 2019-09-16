@@ -44,7 +44,7 @@ export default new Vuex.Store({
     },
     getMyCart({ commit }) {
       axios({
-        url: '/api/get_my_book'
+        url: '/api/get_my_cart'
       }).then(res => {
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
