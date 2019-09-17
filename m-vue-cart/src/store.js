@@ -50,6 +50,20 @@ export default new Vuex.Store({
           commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
         }
       })
+    },
+    updateMyCart({ commit }, payload) {
+      axios({
+        url: '/api/update_my_cart',
+        data: {
+          myNewCart: payload.myNewCart
+        },
+        method: 'post'
+      }).then(res => {
+        if (res.data.code === 200) {
+          console.log(res.data.data)
+          commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
+        }
+      })
     }
   }
 })

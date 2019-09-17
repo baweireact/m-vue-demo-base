@@ -53,6 +53,7 @@ module.exports = {
     before(app) {
       app.use(bodyParser.json())
 
+      //获取商品列表
       app.get('/api/food_list', (req, res) => {
         res.send({
           code: 200,
@@ -61,6 +62,7 @@ module.exports = {
         })
       })
 
+      //加入购物车
       app.post('/api/add_to_my_cart', (req, res) => {
         let { currentItem, categoryName } = req.body
         addToMyCart(categoryName, currentItem)
@@ -70,11 +72,23 @@ module.exports = {
         })
       })
 
+      //获取购物车
       app.get('/api/get_my_cart', (req, res) => {
         res.send({
           code: 200,
           data: myCart,
           message: '我的购物车'
+        })
+      })
+
+      //更新购物车
+      app.post('/api/update_my_cart', (req, res) => {
+        let { myNewCart } = req.body
+        myCart = myNewCart
+        res.send({
+          code: 200,
+          data: myCart,
+          message: '更新成功'
         })
       })
     }

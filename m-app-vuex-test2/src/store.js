@@ -10,8 +10,8 @@ export default new Vuex.Store({
     bookNav: [],
   },
   mutations: {
-    onAdd(a, payload) {
-      a.count = a.count + payload.step
+    onAdd(state, payload) {
+      state.count = a.count + payload.step
     },
     onSub(state) {
       state.count--
@@ -21,12 +21,12 @@ export default new Vuex.Store({
     }
   }, 
   actions: {
-    getBookNav({commit}) {
+    getBookNav({commit, state}, payload) {
       axios({
         url: '/api/nav_list'
       }).then(res => {
         if (res.data.code === 200) {
-          commit({type: 'bookNav', bookNav: res.data.data})
+          context.commit({type: 'bookNav', bookNav: res.data.data})
         }
       })
     }
