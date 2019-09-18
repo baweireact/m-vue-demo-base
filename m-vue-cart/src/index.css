@@ -4,6 +4,9 @@
 .m-footer{display: flex; height: 50px;border-top: 1px solid #dddddd;}
 .m-footer-nav-item{flex: 1;text-align: center;line-height: 50px;text-decoration: none;color: #333333;}
 .m-footer-nav-item.router-link-active{color: #F66F0C;}
+.m-cart-text{position: relative;}
+.m-food-category-count{position: absolute;display: none;padding: 0 5px; top: -20px;right: -20px;min-width: 20px; height: 20px;line-height: 19px;border-radius: 10px; background: #ff0000;color: #ffffff;text-align: center;}
+.m-food-category-count.active{display: inline-block;}
 .m-home{display: flex;height: 100%;}
 .m-sidebar{width: 150px;height: 100%;border-right: 1px solid #dddddd;}
 .m-food-list{flex: 1;height: 100%;overflow-y: auto;}

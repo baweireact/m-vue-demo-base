@@ -10,7 +10,8 @@ export default new Vuex.Store({
     foodList: [],
     currentIndex: 0,
     currentFoodList: [],
-    myCart: []
+    myCart: [],
+    foodCategoryCount: 0,
   },
   mutations: {
     onSetState(state, payload) {
@@ -30,7 +31,7 @@ export default new Vuex.Store({
       })
     },
     //添加购物车
-    addToMyCart({ commit, state }, payload) {
+    addToMyCart({ commit, state, dispatch }, payload) {
       axios({
         url: '/api/add_to_my_cart',
         data: {
@@ -40,7 +41,12 @@ export default new Vuex.Store({
         method: 'post'
       }).then(res => {
         if (res.data.code === 200) {
+          commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
+
+          //回调函数用于关闭对话框
           payload.callback && payload.callback()
+
+          dispatch({ type: 'foodCategoryCount' })
         }
       })
     },
@@ -55,7 +61,7 @@ export default new Vuex.Store({
       })
     },
     //更新购物车列表
-    updateMyCart({ commit }, payload) {
+    updateMyCart({ commit, dispatch }, payload) {
       axios({
         url: '/api/update_my_cart',
         data: {
@@ -65,8 +71,19 @@ export default new Vuex.Store({
       }).then(res => {
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
+          dispatch({ type: 'foodCategoryCount' })
         }
       })
+    },
+    //计算购车礼商品类别数
+    foodCategoryCount({ commit, state }) {
+      //购物车里商品类别数
+      let myCart = state.myCart
+      let foodCategoryCount = 0
+      myCart.forEach(myCartItem => {
+        foodCategoryCount += myCartItem.list.length
+      });
+      commit({ type: 'onSetState', key: 'foodCategoryCount', value: foodCategoryCount })
     }
   }
 })

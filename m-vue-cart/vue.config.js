@@ -62,6 +62,7 @@ module.exports = {
         addToMyCart(categoryName, currentItem)
         res.send({
           code: 200,
+          data: myCart,
           message: '添加成功'
         })
       })
