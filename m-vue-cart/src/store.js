@@ -20,13 +20,14 @@ export default new Vuex.Store({
   },
   actions: {
     //获取菜单列表
-    getFoodList({ commit }) {
+    getFoodList({ commit, dispatch }) {
       axios({
         url: '/api/food_list'
       }).then(res => {
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'foodList', value: res.data.data })
           commit({ type: 'onSetState', key: 'currentFoodList', value: res.data.data[0].spuList })
+          dispatch({ type: 'getMyCart' })
         }
       })
     },
@@ -45,18 +46,20 @@ export default new Vuex.Store({
 
           //回调函数用于关闭对话框
           payload.callback && payload.callback()
-
-          dispatch({ type: 'foodCategoryCount' })
+          setTimeout(() => {
+            dispatch({ type: 'foodCategoryCount' })
+          }, 700)
         }
       })
     },
     //获取购物车列表
-    getMyCart({ commit }) {
+    getMyCart({ commit, dispatch }) {
       axios({
         url: '/api/get_my_cart'
       }).then(res => {
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
+          dispatch({ type: 'foodCategoryCount' })
         }
       })
     },

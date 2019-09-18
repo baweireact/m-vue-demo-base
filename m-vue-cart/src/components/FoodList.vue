@@ -21,16 +21,24 @@
         <el-button @click="handleConfirm">确定</el-button>
       </div>
     </el-dialog>
+    <Fly :run="run" :flyImg="flyImg"></Fly>
   </div>
 </template>
 
 <script>
+import Fly from './Fly'
+
 export default {
   data() {
     return {
       visible: false,
       currentItem: {},
+      run: false,
+      flyImg: '',
     };
+  },
+  components: {
+    Fly
   },
   computed: {
     currentFoodList() {
@@ -48,6 +56,12 @@ export default {
     },
     handleConfirm() {
       this.$store.dispatch({ type: 'addToMyCart', currentItem: this.currentItem, callback: this.handleClose })
+      this.run = true
+      this.flyImg = this.currentItem.bigImageUrl
+      setTimeout(() => {
+        this.run = false
+        this.flyImg = ''
+      }, 700)
     },
     handleSub() {
       if (this.count > 1) {

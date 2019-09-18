@@ -22,8 +22,13 @@ export default {
   },
   methods: {
     handleNav(index) {
-      this.$store.commit({ type: 'onSetState', key: 'currentIndex', value: index })
-      this.$store.commit({ type: 'onSetState', key: 'currentList', value: this.$store.state.foodList[index].spuList })
+      this.$store.commit({
+        type: "onSetState",
+        key: "currentIndex",
+        value: index
+      });
+      let foodList = this.$store.state.foodList;
+      this.$store.commit({ type: 'onSetState', key: 'currentList', value: foodList[index].spuList })
     }
   }
 };

@@ -14,6 +14,7 @@
             class="m-cart-food-list-item"
           >
             <el-checkbox
+              class="m-cart-food-list-item-checkbox"
               v-model="innerItem.checked"
               @change="handleChecked(categoryIndex, listIndex, $event)"
             >{{innerItem.spuName}}</el-checkbox>
