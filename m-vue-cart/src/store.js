@@ -60,7 +60,6 @@ export default new Vuex.Store({
         method: 'post'
       }).then(res => {
         if (res.data.code === 200) {
-          console.log(res.data.data)
           commit({ type: 'onSetState', key: 'myCart', value: res.data.data })
         }
       })

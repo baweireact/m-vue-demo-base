@@ -24,12 +24,7 @@ const addToMyCart = (categoryName, currentItem) => {
     }
 
     //列表选中的个数
-    let listCheckedCount = 0
-    for (let i = 0; i < myCart[categoryIndex].list.length; i++) {
-      if (myCart[categoryIndex].list[i].checked) {
-        listCheckedCount++
-      }
-    }
+    let listCheckedCount = myCart[categoryIndex].list.filter(item => item.checked).length
 
     //设置组是否选中
     myCart[categoryIndex].checked = listCheckedCount === myCart[categoryIndex].list.length
@@ -44,7 +39,6 @@ const addToMyCart = (categoryName, currentItem) => {
     myCart.push(temp)
   }
 }
-
 
 module.exports = {
   lintOnSave: false,
