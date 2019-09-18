@@ -10,7 +10,7 @@ export default new Vuex.Store({
     foodList: [],
     currentIndex: 0,
     currentFoodList: [],
-    myCart: [],
+    myCart: []
   },
   mutations: {
     onSetState(state, payload) {
@@ -18,6 +18,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    //获取菜单列表
     getFoodList({ commit }) {
       axios({
         url: '/api/food_list'
@@ -28,6 +29,7 @@ export default new Vuex.Store({
         }
       })
     },
+    //添加购物车
     addToMyCart({ commit, state }, payload) {
       axios({
         url: '/api/add_to_my_cart',
@@ -42,6 +44,7 @@ export default new Vuex.Store({
         }
       })
     },
+    //获取购物车列表
     getMyCart({ commit }) {
       axios({
         url: '/api/get_my_cart'
@@ -51,6 +54,7 @@ export default new Vuex.Store({
         }
       })
     },
+    //更新购物车列表
     updateMyCart({ commit }, payload) {
       axios({
         url: '/api/update_my_cart',
