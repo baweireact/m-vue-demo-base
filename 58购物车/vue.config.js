@@ -1,27 +1,38 @@
-const { foodList } = require('./data.js')
+const { footList } = require('./data.js')
 const bodyParser = require('body-parser')
 
 let myCart = []
 
-//加入购物车主体代码
+//加入购物主体代码
 const addToMyCart = (categoryName, currentItem) => {
-  const categoryIndex = myCart.findIndex(item => item.categoryName === categoryName)
+  let categoryIndex = myCart.findIndex(item => item.categoryName === categoryName)
 
-  //有一级类别
+  //该分类是否在购物车
   if (categoryIndex >= 0) {
+    //该分类在购物车
     let listIndex = myCart[categoryIndex].list.findIndex(item => item.spuId === currentItem.spuId)
+
+    //该商品是否在购物车
     if (listIndex >= 0) {
-      currentItem.checked = true
-      myCart[categoryIndex].list[listIndex].count += currentItem.count
+      //若该商品已在购物车，则把数量加以上即可
+      myCart[categoryIndex].list[listIndex].checked = true
+      myCart[categoryIndex].list[listIndex].count = myCart[categoryIndex].list[listIndex].count + currentItem.count
     } else {
+      //若该商品并不在购物车，则把昌平添加到购物车
       currentItem.checked = true
       myCart[categoryIndex].list.push(currentItem)
     }
+
+    //列表选中的个数
+    let listCheckedCount = myCart[categoryIndex].list.filter(item => item.checked).length
+
+    //设置组是否选中
+    myCart[categoryIndex].checked = listCheckedCount === myCart[categoryIndex].list.length
   } else {
-    //一级类别都没有
-    currentItem.checked = true  //二级菜品复选框的勾选状态
+    //该分类不在购物车
+    currentItem.checked = true
     let temp = {
-      checked: true,  //一级类别复选框的勾选状态
+      checked: true,
       categoryName: categoryName,
       list: [currentItem]
     }
@@ -30,20 +41,24 @@ const addToMyCart = (categoryName, currentItem) => {
 }
 
 module.exports = {
-  lintOnSave:false, //禁用eslint语法验证功能
+  lintOnSave: false,
   devServer: {
     open: true,
     before(app) {
       app.use(bodyParser.json())
+
+      //获取商品列表
       app.get('/api/food_list', (req, res) => {
         res.send({
           code: 200,
-          data: foodList,
+          data: footList,
           message: '列表'
         })
       })
+
+      //加入购物车
       app.post('/api/add_to_my_cart', (req, res) => {
-        let { categoryName, currentItem } = req.body
+        let { currentItem, categoryName } = req.body
         addToMyCart(categoryName, currentItem)
         res.send({
           code: 200,
@@ -52,7 +67,8 @@ module.exports = {
         })
       })
 
-      app.get('/api/my_cart', (req, res) => {
+      //获取购物车
+      app.get('/api/get_my_cart', (req, res) => {
         res.send({
           code: 200,
           data: myCart,
@@ -60,9 +76,10 @@ module.exports = {
         })
       })
 
+      //更新购物车
       app.post('/api/update_my_cart', (req, res) => {
-        let { newMyCart } = req.body
-        myCart = newMyCart
+        let { myNewCart } = req.body
+        myCart = myNewCart
         res.send({
           code: 200,
           data: myCart,
