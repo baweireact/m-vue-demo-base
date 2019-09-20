@@ -1,6 +1,6 @@
 <template>
   <div class="m-header">
-    header
+    {{this.$store.state.title}}
   </div>
 </template>
 

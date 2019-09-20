@@ -1,9 +1,9 @@
 body{overflow: hidden;}
 .m-wrap{display: flex;flex-direction: column; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
-.m-header{height: 50px;background: red;color: #ffffff;z-index: 3000;}
+.m-header{height: 50px;line-height: 50px;text-align: center; background: red;color: #ffffff;z-index: 3000;}
 .m-main{flex:1;overflow-y: auto;}
 .m-footer{display: flex; height: 50px;border-top: 1px solid #dddddd;}
-.m-footer-nav-item{text-decoration: none;flex: 1;text-align: center;line-height: 50px;color: #333333;}
+.m-footer-nav-item{position: relative; text-decoration: none;flex: 1;text-align: center;line-height: 50px;color: #333333;}
 .m-footer-nav-item.router-link-active{color: red;}
 .m-home{display: flex;height: 100%;}
 .m-sidebar{width: 150px;border-right: 1px solid #dddddd;}
@@ -16,6 +16,7 @@ body{overflow: hidden;}
 .m-cart-food{margin: 0 0 0 20px;}
 
 .m-footer-icon{font-size: 36px;}
+.m-my-cart-food-count{display: inline-block;position: absolute;top: -8px;left: 50%;padding: 0 5px; height: 20px;line-height: 20px;border-radius: 10px;min-width: 20px;text-align: center;background: red;color: #ffffff;}
 
 
 

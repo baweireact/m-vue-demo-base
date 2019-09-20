@@ -10,6 +10,7 @@ export default new Vuex.Store({
     currentIndex: 0,
     currentList: [],
     myCart: [],
+    title: '西少爷点餐系统'
   },
   mutations: {
     onSetState(state, payload) {

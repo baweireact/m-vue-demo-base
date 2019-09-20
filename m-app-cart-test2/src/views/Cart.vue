@@ -56,10 +56,11 @@ export default {
   updated() {
     localStorage.setItem("myCart", JSON.stringify(this.myCart));
     this.selectAll = this.myCart.filter(item => item.checked).length === this.myCart.length
+    this.$store.commit({ type: 'onSetState', key: 'myCart', value: this.myCart })
     this.total()
   },
   mounted() {
-    this.myCart = JSON.parse(localStorage.getItem("myCart"));
+    this.myCart = JSON.parse(localStorage.getItem("myCart")) ? JSON.parse(localStorage.getItem("myCart")) : [];
     this.total()
     this.selectAll = this.myCart.filter(item => item.checked).length === this.myCart.length
   }

@@ -62,8 +62,17 @@ export default {
         myCart.push(food);
       }
       localStorage.setItem("myCart", JSON.stringify(myCart));
-      this.handleHideDialog()
+      this.$store.commit({ type: "onSetState", key: "myCart", value: myCart });
+      this.handleHideDialog();
     }
+  },
+  mounted() {
+    this.myCart = JSON.parse(localStorage.getItem("myCart"));
+    this.$store.commit({
+      type: "onSetState",
+      key: "myCart",
+      value: this.myCart
+    });
   }
 };
 </script>
