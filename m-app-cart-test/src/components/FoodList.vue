@@ -59,6 +59,7 @@ export default {
         ? JSON.parse(localStorage.getItem("myCart"))
         : [];
       let index = myCart.findIndex(food => food.spuId === currentItem.spuId);
+      currentItem.checked = true
       if (index >= 0) {
         myCart[index].count += currentItem.count;
       } else {

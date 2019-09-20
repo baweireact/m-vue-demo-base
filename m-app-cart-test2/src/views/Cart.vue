@@ -6,6 +6,7 @@
       <el-button @click="handleSub(index)">-</el-button>
       {{item.count}}
       <el-button @click="handleAdd(index)">+</el-button>
+      <el-button @click="handleDelete(index)">删除</el-button>
     </div>
     <el-checkbox v-model="selectAll" @change="handleSelectAll"></el-checkbox>
     总价：{{totalPrice}},总数：{{totalCount}}
@@ -41,6 +42,9 @@ export default {
       this.totalPrice = totalPrice;
       this.totalCount = totalCount;
       localStorage.setItem("myCart", JSON.stringify(this.myCart));
+    },
+    handleDelete(index) {
+      this.myCart.splice(index, 1)
     },
     handleSelectAll(checked) {
       this.selectAll = checked
