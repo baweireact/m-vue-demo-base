@@ -1,55 +1,33 @@
 <template>
   <div class="m-main">
     <div v-for="(item, index) in myCart" :key="index">
-      <el-checkbox v-model="item.checked" @change="handleCategory">{{item.categoryName}}</el-checkbox>
-      <div class="m-cart-food">
-        <div v-for="(food, foodIndex) in item.list" :key="food.spuId">
-          <el-checkbox v-model="food.checked" @change="handleFood">{{food.spuName}}</el-checkbox>
-          价格：{{food.currentPrice}},份数：
-          <el-button @click="handleSub(index, foodIndex)">-</el-button>
-          {{food.count}}
-          <el-button @click="handleAdd(index, foodIndex)">+</el-button>
-        </div>
-      </div>
+      菜名：{{item.spuName}},份数：{{item.count}},价格：{{item.currentPrice}}元
     </div>
+    总数:{{totalCount}}, 总价：{{totalPrice}}
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    myCart() {
-      return this.$store.state.myCart;
+  data() {
+    return {
+      myCart: [],
+      totalPrice: 0,
+      totalCount: 0
     }
   },
   methods: {
-    handleAdd(index, foodIndex) {
-      let myCart = this.$store.state.myCart;
-      myCart[index].list[foodIndex].count++;
-      this.$store.commit({ type: "onSetState", key: "myCart", value: myCart });
-      this.$store.dispatch( { type: 'updateMyCart'})
-    },
-    handleSub(index, foodIndex) {
-      let myCart = this.$store.state.myCart;
-      if (myCart[index].list[foodIndex].count > 1) {
-        myCart[index].list[foodIndex].count--;
-        this.$store.commit({
-          type: "onSetState",
-          key: "myCart",
-          value: myCart
-        });
-        this.$store.dispatch( { type: 'updateMyCart'})
-      }
-    },
-    handleCategory(checked) {
-      console.log(checked)
-    },
-    handleFood(checked) {
-      console.log(checked)
-    }
   },
   mounted() {
-    this.$store.dispatch({ type: "getMyCart" });
+    this.myCart = JSON.parse(localStorage.getItem('myCart'))
+    let totalCount = 0
+    let totalPrice = 0
+    this.myCart.forEach(item => {
+      totalCount += item.count
+      totalPrice += item.count * item.currentPrice
+    })
+    this.totalCount = totalCount
+    this.totalPrice = totalPrice
   }
 };
 </script>

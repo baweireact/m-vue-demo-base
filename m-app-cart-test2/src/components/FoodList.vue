@@ -9,13 +9,12 @@
       </div>
     </div>
     <el-dialog title="添加" :visible="visible" @close="handleHideDialog">
+      <el-button @click="handleSub">-</el-button>
+      {{currentItem.count}}
+      <el-button @click="handleAdd">+</el-button>
       <div>
-        <el-button @click="handleSub">-</el-button>
-        {{currentItem.count}}
-        <el-button @click="handleAdd">+</el-button>
-        <div>
-          <el-button @click="handleAddToCart">确定</el-button>
-        </div>
+        <el-button @click="handleHideDialog">取消</el-button>
+        <el-button @click="handleAddToCart">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -38,33 +37,30 @@ export default {
     handleHideDialog() {
       this.visible = false;
     },
-    //显示对话框，并保存这道菜的所有信息到currentItem
     handleShowDialog(item) {
       this.visible = true;
       item.count = 1;
       this.currentItem = JSON.parse(JSON.stringify(item));
+    },
+    handleAdd() {
+      this.currentItem.count++;
     },
     handleSub() {
       if (this.currentItem.count > 1) {
         this.currentItem.count--;
       }
     },
-    handleAdd() {
-      this.currentItem.count++;
-    },
-    //加入购物车
     handleAddToCart() {
-      let currentItem = this.currentItem
+      let food = this.currentItem;
       let myCart = JSON.parse(localStorage.getItem("myCart"))
         ? JSON.parse(localStorage.getItem("myCart"))
         : [];
-      let index = myCart.findIndex(food => food.spuId === currentItem.spuId);
+      let index = myCart.findIndex(item => item.spuId === food.spuId);
       if (index >= 0) {
-        myCart[index].count += currentItem.count;
+        myCart[index].count += food.count;
       } else {
-        myCart.push(currentItem);
+        myCart.push(food);
       }
-
       localStorage.setItem("myCart", JSON.stringify(myCart));
       this.handleHideDialog()
     }
