@@ -1,5 +1,5 @@
 .m-wrap{display: flex;flex-direction: column; position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
-.m-header{height: 50px;background: red;color: #ffffff;}
+.m-header{height: 50px;background: red;color: #ffffff;z-index: 3000;}
 .m-main{flex:1;height: 100%;overflow-y: auto;}
 .m-footer{display: flex; height: 50px;border-top: 1px solid #dddddd;}
 .m-footer-nav-item{text-decoration: none;flex: 1;text-align: center;line-height: 50px;color: #333333;}
@@ -14,6 +14,7 @@
 .m-food-list-item-info{flex: 1;padding: 5px;}
 .m-cart-food{margin: 0 0 0 20px;}
 
+.m-footer-icon{font-size: 36px;}
 
 
 

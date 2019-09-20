@@ -6,6 +6,14 @@
         <div>{{item.spuName}}</div>
         <div>{{item.currentPrice}}</div>
         <el-button @click="handleShowDialog(item)">加入购物车</el-button>
+        <el-select v-model="value" placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
       </div>
     </div>
 
@@ -28,7 +36,30 @@ export default {
   data() {
     return {
       visible: false,
-      currentItem: {}
+      currentItem: {},
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕"
+        },
+        {
+          value: "选项2",
+          label: "双皮奶"
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎"
+        },
+        {
+          value: "选项4",
+          label: "龙须面"
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭"
+        }
+      ],
+      value: ""
     };
   },
   computed: {
@@ -46,9 +77,13 @@ export default {
       this.visible = false;
     },
     handleAddToCart() {
-      let foodList = this.$store.state.foodList
-      let currentIndex = this.$store.state.currentIndex  //当前的下标
-      this.$store.dispatch({ type: 'addToMyCart', categoryName: foodList[currentIndex].categoryName, currentItem: this.currentItem })
+      let foodList = this.$store.state.foodList;
+      let currentIndex = this.$store.state.currentIndex; //当前的下标
+      this.$store.dispatch({
+        type: "addToMyCart",
+        categoryName: foodList[currentIndex].categoryName,
+        currentItem: this.currentItem
+      });
       this.handleHideDialog();
     },
     handleAdd() {

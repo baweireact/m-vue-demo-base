@@ -1,14 +1,6 @@
-.m-login{position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%);padding: 10px; width: 400px;height: 200px; border-radius: 10px;background: #dddddd; border: 1px solid #dddddd;}
-.m-input-row{margin: 10px;}
-.m-input{width: 100%;line-height: 30px;}
-.m-btn{width: 100%;line-height: 30px;}
+.m-container{position: relative;}
+.m-select-wrap{position:sticky;top: 0; height: 50px;background: #aaaaaa;}
 
-.m-about{display: flex;position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
-.m-sidebar{width: 100px;height: 100%; background: #dddddd;}
-.m-nav-item{display: block;text-align: center;line-height: 40px;color: #333333;text-decoration: none;}
-.m-nav-item:hover{background: #aaaaaa;}
-.m-nav-item.router-link-exact-active {color: #f66f0c;background: #aaaaaa;}
-.m-content{flex: 1;}
 
 
 
