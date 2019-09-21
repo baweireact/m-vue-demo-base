@@ -9,9 +9,11 @@
 .m-cart-text{position: relative;}
 .m-food-category-count{position: absolute;display: none;padding: 0 5px; top: -46px;right: -20px;min-width: 20px; height: 20px;line-height: 19px;border-radius: 10px; background: #ff0000;color: #ffffff;text-align: center;}
 .m-food-category-count.active{display: inline-block;}
-.m-home{display: flex;height: 100%;}
-.m-sidebar{width: 150px;height: 100%;border-right: 1px solid #dddddd;}
-.m-food-list{flex: 1; height: 100%;overflow-y: auto;}
+.m-home-wrap{display: flex;flex-direction: column; height: 100%;overflow-y: auto;}
+.m-search-wrap{display: flex; height: 50px;}
+.m-home{display: flex;flex: 1;overflow-y: auto;}
+.m-sidebar{width: 150px;border-right: 1px solid #dddddd;}
+.m-food-list{flex: 1;overflow-y: auto;}
 .m-sidebar-nav-item{text-align: center;line-height: 30px;color:#333333; border-bottom: 1px solid #dddddd;cursor: pointer;}
 .m-sidebar-nav-item.active{color: #ffffff;background: #ee5353;}
 .m-food-list-item{display: flex;padding: 5px; border-bottom: 1px solid #dddddd;}

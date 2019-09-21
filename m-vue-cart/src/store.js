@@ -20,9 +20,10 @@ export default new Vuex.Store({
   },
   actions: {
     //获取菜单列表
-    getFoodList({ commit, dispatch }) {
+    getFoodList({ commit, dispatch }, payload) {
+      let searchValue = payload.searchValue ? payload.searchValue : ''
       axios({
-        url: '/api/food_list'
+        url: `/api/food_list?searchValue=${searchValue}`
       }).then(res => {
         if (res.data.code === 200) {
           commit({ type: 'onSetState', key: 'foodList', value: res.data.data })

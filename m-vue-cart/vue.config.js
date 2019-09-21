@@ -1,4 +1,4 @@
-const { footList } = require('./data.js')
+const { foodList } = require('./data.js')
 const bodyParser = require('body-parser')
 
 let myCart = []
@@ -49,9 +49,20 @@ module.exports = {
 
       //获取商品列表
       app.get('/api/food_list', (req, res) => {
+        let myFoodList = JSON.parse(JSON.stringify(foodList))
+        if (req.query) {
+          let { searchValue } = req.query
+          myFoodList.forEach(item => {
+            item.spuList = item.spuList.filter(food => {
+              return food.spuName.includes(searchValue)
+            })
+          })
+          myFoodList = myFoodList.filter(item => item.spuList.length > 0)
+          console.log(searchValue)
+        }
         res.send({
           code: 200,
-          data: footList,
+          data: myFoodList,
           message: '列表'
         })
       })

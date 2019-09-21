@@ -1,4 +1,4 @@
-const footList = [
+const foodList = [
   {
     "tag": "100",
     "activityTag": "",
@@ -1425,5 +1425,5 @@ const footList = [
 ]
 
 module.exports = {
-  footList
+  foodList
 }
