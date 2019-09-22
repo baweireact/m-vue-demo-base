@@ -1,0 +1,9 @@
+.router-link-active{color: red;}
+.m-list-item{display: inline-block;padding: 10px; width: 50%;border: 1px solid #dddddd;box-sizing: border-box;}
+.m-list-item.active{width: 100%;}
+
+
+
+
+
+
