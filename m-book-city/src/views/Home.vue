@@ -1,8 +1,24 @@
 <template>
   <div class="home">
-    <input v-model="search"/><button @click="handleSearch">搜索</button>
-    <div v-for="item in list" :key="item.id">
-      <button @click="handleDetail(item.id)">{{item.name}}</button>
+    <span
+      v-for="(item,index) in list"
+      :key="item.id"
+      class="m-nav-item"
+      :class="{active: currentIndex === index}"
+      @click="handleNav(index)"
+    >{{item.name}}</span>
+    <button @click="handleOpen">{{ open? '折叠': '展开'}}</button>
+    <button @click="handLoading">显示加载中</button>
+    <div class="m-list" :class="{active: !open}">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+    <div class="m-loading" :class="{active: loading}">
+      <span class="m-loading-text">加载中。。。</span>
     </div>
   </div>
 </template>
@@ -11,17 +27,24 @@
 export default {
   data() {
     return {
-      search: '',
-      list: []
+      currentIndex: 0,
+      list: [],
+      open: false,
+      loading: false,
     };
   },
   methods: {
-    handleDetail(id) {
-      this.$router.push("/index/home/detail/" + id);
+    handleNav(index) {
+      this.currentIndex = index
     },
-    handleSearch() {
-      let list = JSON.parse(localStorage.getItem('list'))
-      this.list = list.filter(item => item.name.includes(this.search))
+    handleOpen() {
+      this.open = !this.open
+    },
+    handLoading() {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
     }
   },
   mounted() {
