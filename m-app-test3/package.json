@@ -23,7 +23,7 @@
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "swiper": "^4.5.0",
+    "swiper": "^6.5.1",
     "url-loader": "^2.1.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
